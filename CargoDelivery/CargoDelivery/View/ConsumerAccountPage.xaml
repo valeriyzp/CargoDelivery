@@ -1,0 +1,74 @@
+﻿<Page x:Class="CargoDelivery.View.ConsumerAccountPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CargoDelivery.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="376.145" d:DesignWidth="573.283"
+      Title="Consumer account page | CargoDelivery">
+    <Page.Resources>
+        <Style x:Key="GreyTextOverTextBlock">
+            <Setter Property="Control.FontSize" Value="14"/>
+            <Setter Property="Control.Foreground" Value="#99000000"/>
+            <Setter Property="Control.Margin" Value="0 0 0 5"/>
+            <Setter Property="Control.HorizontalAlignment" Value="Left"/>
+        </Style>
+        <Style x:Key="GreyTextBox" TargetType="TextBox">
+            <Setter Property="Control.FontSize" Value="14"/>
+            <Setter Property="Control.Height" Value="24"/>
+            <Setter Property="Control.BorderThickness" Value="2"/>
+        </Style>
+        <Style x:Key="GreyComboBox">
+            <Setter Property="Control.FontSize" Value="14"/>
+            <Setter Property="Control.Height" Value="24"/>
+            <Setter Property="Control.BorderThickness" Value="2"/>
+        </Style>
+        <Style x:Key="ErrorLabel">
+            <Setter Property="Control.FontSize" Value="12"/>
+            <Setter Property="Control.Height" Value="26"/>
+            <Setter Property="Control.Foreground" Value="Red"/>
+            <Setter Property="Control.Padding" Value="5, 5, 0, 0"/>
+            <Setter Property="Control.Margin" Value="0, 0, 0, 5"/>
+        </Style>
+    </Page.Resources>
+    <Page.InputBindings>
+        <KeyBinding Modifiers="Ctrl" Key="S" Command="{Binding SaveChangesCommand}"/>
+    </Page.InputBindings>
+    <ScrollViewer>
+        <Grid Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <GroupBox Header="Account information" Margin="20">
+                <Grid Background="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Margin="10 10 35 10">
+                        <TextBlock Style="{StaticResource GreyTextOverTextBlock}" Text="Username"/>
+                        <TextBox  Name="tbUsername" IsReadOnly="True" Style="{StaticResource GreyTextBox}" Text="{Binding consumer.Username, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                        <Label Style="{StaticResource ErrorLabel}" Content="{Binding ElementName=tbUsername, Path=(Validation.Errors).CurrentItem.ErrorContent}"/>
+                        <TextBlock Style="{StaticResource GreyTextOverTextBlock}" Text="First name"/>
+                        <TextBox Name="tbFirstName"  Style="{StaticResource GreyTextBox}" Text="{Binding consumer.FirstName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                        <Label Style="{StaticResource ErrorLabel}" Content="{Binding ElementName=tbFirstName, Path=(Validation.Errors).CurrentItem.ErrorContent}"/>
+                        <TextBlock Style="{StaticResource GreyTextOverTextBlock}" Text="Last name"/>
+                        <TextBox Name="tbLastName"  Style="{StaticResource GreyTextBox}" Text="{Binding consumer.LastName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                        <Label Style="{StaticResource ErrorLabel}" Margin="0" Content="{Binding ElementName=tbLastName, Path=(Validation.Errors).CurrentItem.ErrorContent}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Margin="35 10 10 10">
+                        <TextBlock Style="{StaticResource GreyTextOverTextBlock}" Text="Email"/>
+                        <TextBox Name="tbEmail" IsReadOnly="True" Style="{StaticResource GreyTextBox}" Text="{Binding consumer.Email, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                        <Label Style="{StaticResource ErrorLabel}" Content="{Binding ElementName=tbEmail, Path=(Validation.Errors).CurrentItem.ErrorContent}"/>
+                        <TextBlock Style="{StaticResource GreyTextOverTextBlock}" Text="Phone number"/>
+                        <TextBox Name="tbPhoneNumber" IsReadOnly="True" Style="{StaticResource GreyTextBox}" Text="{Binding consumer.PhoneNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                        <Label Style="{StaticResource ErrorLabel}" Content="{Binding ElementName=tbPhoneNumber, Path=(Validation.Errors).CurrentItem.ErrorContent}"/>
+                    </StackPanel>
+                </Grid>
+            </GroupBox>
+            <Button Grid.Row="1" FontSize="14" Width="120" Height="32" Margin="0 0 0 20" Content="Save changes" VerticalAlignment="Top" HorizontalAlignment="Center" Command="{Binding SaveChangesCommand}"/>
+        </Grid>
+    </ScrollViewer>
+</Page>

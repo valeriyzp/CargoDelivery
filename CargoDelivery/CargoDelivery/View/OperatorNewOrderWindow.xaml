@@ -1,0 +1,108 @@
+﻿<Window x:Class="CargoDelivery.View.OperatorNewOrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CargoDelivery.View"
+        mc:Ignorable="d"
+        Title="New order | CargoDelivery" Height="780" Width="500" Icon="/CargoDelivery;component/Resources/CargoDelivery.ico">
+    <Window.Resources>
+        <Style x:Key="GreyTextOverTextBlock">
+            <Setter Property="Control.FontSize" Value="14"/>
+            <Setter Property="Control.Foreground" Value="#99000000"/>
+            <Setter Property="Control.Margin" Value="0 0 0 5"/>
+            <Setter Property="Control.HorizontalAlignment" Value="Left"/>
+        </Style>
+        <Style x:Key="GreyTextBox" TargetType="TextBox">
+            <Setter Property="Control.FontSize" Value="14"/>
+            <Setter Property="Control.Height" Value="24"/>
+            <Setter Property="Control.BorderThickness" Value="2"/>
+        </Style>
+        <Style x:Key="GreyComboBox">
+            <Setter Property="Control.FontSize" Value="14"/>
+            <Setter Property="Control.Height" Value="24"/>
+            <Setter Property="Control.BorderThickness" Value="2"/>
+        </Style>
+        <Style x:Key="ErrorLabel">
+            <Setter Property="Control.FontSize" Value="12"/>
+            <Setter Property="Control.Height" Value="26"/>
+            <Setter Property="Control.Foreground" Value="Red"/>
+            <Setter Property="Control.Padding" Value="5, 5, 0, 0"/>
+            <Setter Property="Control.Margin" Value="0, 0, 0, 5"/>
+        </Style>
+    </Window.Resources>
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <GroupBox Header="Sender" Margin="20">
+            <StackPanel Margin="10">
+                <TextBlock Style="{StaticResource GreyTextOverTextBlock}" Text="First name"/>
+                <TextBox Name="tbSenderFirstName"  Style="{StaticResource GreyTextBox}" Text="{Binding NewOrder.SenderFirstName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                <Label Style="{StaticResource ErrorLabel}" Content="{Binding ElementName=tbSenderFirstName, Path=(Validation.Errors).CurrentItem.ErrorContent}"/>
+                <TextBlock Style="{StaticResource GreyTextOverTextBlock}" Text="Last name"/>
+                <TextBox Name="tbSenderLastName"  Style="{StaticResource GreyTextBox}" Text="{Binding NewOrder.SenderLastName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                <Label Style="{StaticResource ErrorLabel}" Content="{Binding ElementName=tbSenderLastName, Path=(Validation.Errors).CurrentItem.ErrorContent}"/>
+                <TextBlock Style="{StaticResource GreyTextOverTextBlock}" Text="Phone number"/>
+                <TextBox Name="tbSenderPhoneNumber"  Style="{StaticResource GreyTextBox}" Text="{Binding NewOrder.SenderPhoneNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                <Label Style="{StaticResource ErrorLabel}" Content="{Binding ElementName=tbSenderPhoneNumber, Path=(Validation.Errors).CurrentItem.ErrorContent}"/>
+                <TextBlock Style="{StaticResource GreyTextOverTextBlock}" Text="City"/>
+                <TextBox Name="tbSenderCity"  Style="{StaticResource GreyTextBox}" Text="{Binding NewOrder.SenderCity, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                <Label Style="{StaticResource ErrorLabel}" Margin="0" Content="{Binding ElementName=tbSenderCity, Path=(Validation.Errors).CurrentItem.ErrorContent}"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Grid.Column="1"  Header="Receiver" Margin="20">
+            <StackPanel Margin="10">
+                <TextBlock Style="{StaticResource GreyTextOverTextBlock}" Text="First name"/>
+                <TextBox Name="tbReceiverFirstName"  Style="{StaticResource GreyTextBox}" Text="{Binding NewOrder.ReceiverFirstName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                <Label Style="{StaticResource ErrorLabel}" Content="{Binding ElementName=tbReceiverFirstName, Path=(Validation.Errors).CurrentItem.ErrorContent}"/>
+                <TextBlock Style="{StaticResource GreyTextOverTextBlock}" Text="Last name"/>
+                <TextBox Name="tbReceiverLastName"  Style="{StaticResource GreyTextBox}" Text="{Binding NewOrder.ReceiverLastName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                <Label Style="{StaticResource ErrorLabel}" Content="{Binding ElementName=tbReceiverLastName, Path=(Validation.Errors).CurrentItem.ErrorContent}"/>
+                <TextBlock Style="{StaticResource GreyTextOverTextBlock}" Text="Phone number"/>
+                <TextBox Name="tbReceiverPhoneNumber"  Style="{StaticResource GreyTextBox}" Text="{Binding NewOrder.ReceiverPhoneNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                <Label Style="{StaticResource ErrorLabel}" Content="{Binding ElementName=tbReceiverPhoneNumber, Path=(Validation.Errors).CurrentItem.ErrorContent}"/>
+                <TextBlock Style="{StaticResource GreyTextOverTextBlock}" Text="City"/>
+                <TextBox Name="tbReceiverCity"  Style="{StaticResource GreyTextBox}" Text="{Binding NewOrder.ReceiverCity, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                <Label Style="{StaticResource ErrorLabel}" Margin="0" Content="{Binding ElementName=tbReceiverCity, Path=(Validation.Errors).CurrentItem.ErrorContent}"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Grid.Row="1" Grid.ColumnSpan="2"  Header="Cargo information" Margin="20 0 20 20">
+            <Grid Background="White">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Margin="10 10 35 10">
+                    <TextBlock Style="{StaticResource GreyTextOverTextBlock}" Text="Type"/>
+                    <ComboBox ItemsSource="{Binding NewOrder.Types}" SelectedItem="{Binding NewOrder.Type}" Style="{StaticResource GreyComboBox}" Name="tbType" />
+                    <Label Style="{StaticResource ErrorLabel}" Content="{Binding ElementName=tbType, Path=(Validation.Errors).CurrentItem.ErrorContent}"/>
+                    <TextBlock Style="{StaticResource GreyTextOverTextBlock}" Text="Weight, kg"/>
+                    <TextBox Name="tbWeight"  Style="{StaticResource GreyTextBox}" Text="{Binding NewOrder.Weight, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    <Label Style="{StaticResource ErrorLabel}" Content="{Binding ElementName=tbWeight, Path=(Validation.Errors).CurrentItem.ErrorContent}"/>
+                    <TextBlock Style="{StaticResource GreyTextOverTextBlock}" Text="Declared price, UAH"/>
+                    <TextBox Name="tbDeclaredPrice"  Style="{StaticResource GreyTextBox}" Text="{Binding NewOrder.DeclaredPrice, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    <Label Style="{StaticResource ErrorLabel}" Margin="0" Content="{Binding ElementName=tbDeclaredPrice, Path=(Validation.Errors).CurrentItem.ErrorContent}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Margin="35 10 10 10">
+                    <TextBlock Style="{StaticResource GreyTextOverTextBlock}" Text="Length, sm"/>
+                    <TextBox Name="tbSizeX"  Style="{StaticResource GreyTextBox}" Text="{Binding NewOrder.Size_X, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    <Label Style="{StaticResource ErrorLabel}" Content="{Binding ElementName=tbSizeX, Path=(Validation.Errors).CurrentItem.ErrorContent}"/>
+                    <TextBlock Style="{StaticResource GreyTextOverTextBlock}" Text="Height, sm"/>
+                    <TextBox Name="tbSizeY"  Style="{StaticResource GreyTextBox}" Text="{Binding NewOrder.Size_Y, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    <Label Style="{StaticResource ErrorLabel}" Content="{Binding ElementName=tbSizeY, Path=(Validation.Errors).CurrentItem.ErrorContent}"/>
+                    <TextBlock Style="{StaticResource GreyTextOverTextBlock}" Text="Width, sm"/>
+                    <TextBox Name="tbSizeZ"  Style="{StaticResource GreyTextBox}" Text="{Binding NewOrder.Size_Z, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    <Label Style="{StaticResource ErrorLabel}" Margin="0" Content="{Binding ElementName=tbSizeZ, Path=(Validation.Errors).CurrentItem.ErrorContent}"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+        <Button Grid.Row="2" Grid.ColumnSpan="2" FontSize="14" Width="120" Height="32" Margin="0 0 0 20" Content="Submit" VerticalAlignment="Top" HorizontalAlignment="Center" Command="{Binding SubmitNewOrderCommand}"/>
+    </Grid>
+</Window>

@@ -1,0 +1,49 @@
+﻿<Window x:Class="CargoDelivery.View.ConsumerMainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CargoDelivery.View"
+        mc:Ignorable="d"
+        Title="Main window | CargoDelivery" Height="480" Width="750"  Icon="/Resources/CargoDelivery.ico">
+    <Window.Resources>
+        <SolidColorBrush x:Key="scbMenu">#D3D3D3</SolidColorBrush>
+        <Style x:Key="MenuButton">
+            <Setter Property="Control.Background" Value="{StaticResource scbMenu}"/>
+            <Setter Property="Control.Height" Value="40"/>
+            <Setter Property="Control.BorderThickness" Value="0"/>
+            <Setter Property="Control.FontSize" Value="14"/>
+            <Setter Property="Control.HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Control.VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Control.Padding" Value="10 0 0 0"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="125"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.RowSpan="2" Background="{StaticResource scbMenu}">
+            <Button Style="{StaticResource MenuButton}" Content="Account" Command="{Binding GoToAccountCommand}"/>
+            <Button Style="{StaticResource MenuButton}" Content="New order" Command="{Binding GoToNewOrderCommand}"/>
+            <Button Style="{StaticResource MenuButton}" Content="My orders" Command="{Binding GoToOrdersCommand}"/>
+            <Button Style="{StaticResource MenuButton}" Content="Tracking" Command="{Binding GoToTrackingCommand}"/>
+        </StackPanel>
+        <StackPanel Grid.RowSpan="2" VerticalAlignment="Bottom">
+            <Button Style="{StaticResource MenuButton}" Content="Quit" IsCancel="True"/>
+        </StackPanel>
+        <Grid Grid.Column="1" Background="{StaticResource scbMenu}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="52"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding consumer.Username}" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14"/>
+            <Image Grid.Column="1" Source="/Resources/LoginImage.png" Width="32" Height="32"/>
+        </Grid>
+        <Frame Grid.Column="1" Grid.Row="1" Content="{Binding CurrentPage}" NavigationUIVisibility="Hidden"/>
+    </Grid>
+</Window>

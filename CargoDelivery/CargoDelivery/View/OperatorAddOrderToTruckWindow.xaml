@@ -1,0 +1,36 @@
+﻿<Window x:Class="CargoDelivery.View.OperatorAddOrderToTruckWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CargoDelivery.View"
+        mc:Ignorable="d"
+        Title="Add order to truck | CargoDelivery" Height="320" Width="350" Icon="/Resources/CargoDelivery.ico">
+    <Window.Resources>
+        <SolidColorBrush x:Key="scbMenu">#D3D3D3</SolidColorBrush>
+        <Style x:Key="GreyTextOverTextBlock">
+            <Setter Property="Control.FontSize" Value="14"/>
+            <Setter Property="Control.Foreground" Value="#99000000"/>
+            <Setter Property="Control.Margin" Value="0 10 0 5"/>
+            <Setter Property="Control.HorizontalAlignment" Value="Left"/>
+        </Style>
+        <Style x:Key="GreyTextBox" TargetType="TextBox">
+            <Setter Property="Control.FontSize" Value="14"/>
+            <Setter Property="Control.Height" Value="24"/>
+            <Setter Property="Control.BorderThickness" Value="2"/>
+        </Style>
+    </Window.Resources>
+    <Border Background="{StaticResource scbMenu}">
+        <Border Margin="10" Background="White" CornerRadius="10">
+            <GroupBox Header="Add order to truck" Margin="20" VerticalAlignment="Top">
+                <StackPanel Margin="10">
+                    <TextBlock Style="{StaticResource GreyTextOverTextBlock}" Text="Truck id"/>
+                    <TextBox Style="{StaticResource GreyTextBox}" Text="{Binding TruckID, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Style="{StaticResource GreyTextOverTextBlock}" Text="Order number"/>
+                    <TextBox Style="{StaticResource GreyTextBox}" Text="{Binding Number, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button Margin="0 20 0 10" FontSize="14" Width="120" Height="32" Content="Confirm" HorizontalAlignment="Center" Command="{Binding AddOrderToTruckCommand}"/>
+                </StackPanel>
+            </GroupBox>
+        </Border>
+    </Border>
+</Window>

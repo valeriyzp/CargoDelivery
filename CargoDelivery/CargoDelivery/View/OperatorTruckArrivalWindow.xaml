@@ -1,0 +1,34 @@
+﻿<Window x:Class="CargoDelivery.View.OperatorTruckArrivalWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CargoDelivery.View"
+        mc:Ignorable="d"
+        Title="Truck arrival | CargoDelivery" Height="250" Width="350" ResizeMode="NoResize" Icon="/Resources/CargoDelivery.ico">
+    <Window.Resources>
+        <SolidColorBrush x:Key="scbMenu">#D3D3D3</SolidColorBrush>
+        <Style x:Key="GreyTextOverTextBlock">
+            <Setter Property="Control.FontSize" Value="14"/>
+            <Setter Property="Control.Foreground" Value="#99000000"/>
+            <Setter Property="Control.Margin" Value="0 0 0 5"/>
+            <Setter Property="Control.HorizontalAlignment" Value="Left"/>
+        </Style>
+        <Style x:Key="GreyTextBox" TargetType="TextBox">
+            <Setter Property="Control.FontSize" Value="14"/>
+            <Setter Property="Control.Height" Value="24"/>
+            <Setter Property="Control.BorderThickness" Value="2"/>
+        </Style>
+    </Window.Resources>
+    <Border Background="{StaticResource scbMenu}">
+        <Border Margin="10" Background="White" CornerRadius="10">
+            <GroupBox Header="Truck arrival" Margin="20" VerticalAlignment="Top">
+                <StackPanel Margin="10">
+                    <TextBlock Style="{StaticResource GreyTextOverTextBlock}" Text="Truck id"/>
+                    <TextBox Style="{StaticResource GreyTextBox}" Text="{Binding TruckID, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button Margin="0 20 0 10" Grid.Column="1" FontSize="14" Width="120" Height="32" Content="Confirm" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding TruckArrivalConfirmCommand}"/>
+                </StackPanel>
+            </GroupBox>
+        </Border>
+    </Border>
+</Window>
